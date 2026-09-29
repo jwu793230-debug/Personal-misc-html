@@ -214,6 +214,18 @@
     .metric small { display: block; margin-top: 2px; color: var(--muted); font-size: 10px; }
     .metric.goal-count { grid-column: 1 / -1; border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); background: var(--accent-soft); }
     .metric.goal-count strong { color: var(--accent); font-size: 26px; }
+    .goal-progress { margin-top: 25px; padding-top: 10px; border-top: 1px solid color-mix(in srgb, var(--accent) 28%, transparent); }
+    .goal-progress-meta, .goal-progress-dates { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+    .goal-progress-meta span, .goal-progress-dates span { display: inline; }
+    .goal-progress-meta span { color: var(--text); font-size: 11px; font-weight: 700; }
+    .goal-progress-meta strong { display: inline; margin: 0; color: var(--accent); font-size: 13px; line-height: 1.2; }
+    .goal-track { position: relative; height: 7px; margin-top: 24px; border-radius: 3px; background: color-mix(in srgb, var(--accent) 18%, var(--surface)); }
+    .goal-fill { width: 0; height: 100%; border-radius: inherit; background: var(--accent); }
+    .checkpoint-marker { position: absolute; top: -7px; width: 2px; height: 21px; border-radius: 1px; background: var(--text); transform: translateX(-1px); }
+    .checkpoint-marker span { position: absolute; bottom: 15px; left: 50%; display: block; color: var(--text); font-size: 10px; font-weight: 720; line-height: 1.2; white-space: nowrap; transform: translateX(-50%); }
+    .goal-progress-dates { margin-top: 7px; }
+    .goal-progress-dates span { color: var(--muted); font-size: 9px; font-variant-numeric: tabular-nums; }
+    .progress-note { margin: 5px 0 0; color: var(--muted); font-size: 9px; }
     .profile-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .profile-item span { display: block; color: var(--muted); font-size: 10px; }
     .profile-item strong { display: block; margin-top: 2px; font-size: 13px; }
@@ -240,7 +252,7 @@
       .today-card .plan-section:nth-of-type(1), .today-card .plan-section:nth-of-type(3) { border-right: 1px solid var(--line); }
       .day-list { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
       .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-      .metric.goal-count { grid-column: span 2; }
+      .metric.goal-count { grid-column: 1 / -1; }
       .profile-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .milestones { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .rules-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
@@ -309,7 +321,20 @@
         </div>
 
         <div class="metrics" aria-label="目标概览">
-          <div class="metric goal-count"><span>距减重 20 kg 目标还有</span><strong id="goalDays">182 天</strong><small id="goalDateText">目标日 2027-03-29</small></div>
+          <div class="metric goal-count">
+            <span>距减重 20 kg 目标还有</span>
+            <strong id="goalDays">182 天</strong>
+            <small id="goalDateText">目标日 2027-03-29</small>
+            <div class="goal-progress" id="goalProgress" role="progressbar" aria-label="182天目标时间进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="已完成 0%">
+              <div class="goal-progress-meta"><span>182天时间进度</span><strong id="progressPercent">0%</strong></div>
+              <div class="goal-track" aria-hidden="true">
+                <div class="goal-fill" id="goalFill"></div>
+                <div class="checkpoint-marker" id="checkpointMarker"><span>12周 85.7 kg</span></div>
+              </div>
+              <div class="goal-progress-dates"><span>2026-09-29</span><span>2027-03-29</span></div>
+              <p class="progress-note">仅表示时间进度，不代表实际体重进度。</p>
+            </div>
+          </div>
           <div class="metric"><span>起始体重</span><strong>95.0 kg</strong><small>BMI 31.0</small></div>
           <div class="metric"><span>目标体重</span><strong>75.0 kg</strong><small>BMI 24.5</small></div>
           <div class="metric"><span>计划长度</span><strong>180 天</strong><small>2026-10-01 开始</small></div>
@@ -383,9 +408,12 @@
     (() => {
       'use strict';
 
+      const COUNTDOWN_START = new Date(2026, 8, 29, 12);
+      const CHECKPOINT = new Date(2026, 11, 23, 12);
       const START = new Date(2026, 9, 1, 12);
       const END = new Date(2027, 2, 29, 12);
       const TOTAL_DAYS = 180;
+      const GOAL_TOTAL_DAYS = 182;
       const dayNames = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
       const validPages = new Set(['today', 'plan', 'profile', 'rules']);
       let planRendered = false;
@@ -663,9 +691,19 @@
       function renderProfile() {
         const now = new Date();
         const today = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12);
-        const daysLeft = today > END ? 0 : Math.max(1, Math.ceil((END - today) / 86400000) + 1);
+        const goalDuration = END - COUNTDOWN_START;
+        const daysLeft = today > END ? 0 : Math.min(GOAL_TOTAL_DAYS, Math.max(1, Math.ceil((END - today) / 86400000) + 1));
+        const elapsedPercent = today <= COUNTDOWN_START ? 0 : today >= END ? 100 : ((today - COUNTDOWN_START) / goalDuration) * 100;
+        const markerPercent = ((CHECKPOINT - COUNTDOWN_START) / goalDuration) * 100;
+        const roundedPercent = Math.round(elapsedPercent);
+        const progress = document.getElementById('goalProgress');
         document.getElementById('goalDays').textContent = daysLeft === 0 ? '目标日已到' : `${daysLeft} 天`;
         document.getElementById('goalDateText').textContent = daysLeft === 0 ? '计划结束日 2027-03-29' : '目标日 2027-03-29，按自然日含当天计算';
+        document.getElementById('progressPercent').textContent = `${roundedPercent}%`;
+        document.getElementById('goalFill').style.width = `${elapsedPercent.toFixed(2)}%`;
+        document.getElementById('checkpointMarker').style.left = `${markerPercent.toFixed(2)}%`;
+        progress.setAttribute('aria-valuenow', String(roundedPercent));
+        progress.setAttribute('aria-valuetext', `已完成 ${roundedPercent}%`);
       }
 
       function renderTaper() {
