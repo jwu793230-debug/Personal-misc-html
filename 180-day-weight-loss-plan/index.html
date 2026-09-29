@@ -221,8 +221,15 @@
     .goal-progress-meta strong { display: inline; margin: 0; color: var(--accent); font-size: 13px; line-height: 1.2; }
     .goal-track { position: relative; height: 7px; margin-top: 24px; border-radius: 3px; background: color-mix(in srgb, var(--accent) 18%, var(--surface)); }
     .goal-fill { width: 0; height: 100%; border-radius: inherit; background: var(--accent); }
-    .checkpoint-marker { position: absolute; top: -7px; width: 2px; height: 21px; border-radius: 1px; background: var(--text); transform: translateX(-1px); }
-    .checkpoint-marker span { position: absolute; bottom: 15px; left: 50%; display: block; color: var(--text); font-size: 10px; font-weight: 720; line-height: 1.2; white-space: nowrap; transform: translateX(-50%); }
+    .goal-start-marker, .checkpoint-marker, .goal-end-marker { position: absolute; top: -7px; width: 2px; height: 21px; border-radius: 1px; }
+    .checkpoint-marker { background: var(--text); transform: translateX(-1px); }
+    .goal-start-marker span, .checkpoint-marker span, .goal-end-marker span { position: absolute; bottom: 15px; display: block; font-size: 10px; font-weight: 720; line-height: 1.2; white-space: nowrap; }
+    .checkpoint-marker span { left: 50%; color: var(--text); transform: translateX(-50%); }
+    .goal-start-marker, .goal-end-marker { background: var(--accent); }
+    .goal-start-marker { left: 0; }
+    .goal-start-marker span { left: 0; color: var(--accent); }
+    .goal-end-marker { right: 0; }
+    .goal-end-marker span { right: 0; color: var(--accent); text-align: right; }
     .goal-progress-dates { margin-top: 7px; }
     .goal-progress-dates span { color: var(--muted); font-size: 9px; font-variant-numeric: tabular-nums; }
     .progress-note { margin: 5px 0 0; color: var(--muted); font-size: 9px; }
@@ -329,7 +336,9 @@
               <div class="goal-progress-meta"><span>182天时间进度</span><strong id="progressPercent">0%</strong></div>
               <div class="goal-track" aria-hidden="true">
                 <div class="goal-fill" id="goalFill"></div>
+                <div class="goal-start-marker"><span>起点 95 kg</span></div>
                 <div class="checkpoint-marker" id="checkpointMarker"><span>12周 85.7 kg</span></div>
+                <div class="goal-end-marker"><span>目标 75 kg</span></div>
               </div>
               <div class="goal-progress-dates"><span>2026-09-29</span><span>2027-03-29</span></div>
               <p class="progress-note">仅表示时间进度，不代表实际体重进度。</p>
