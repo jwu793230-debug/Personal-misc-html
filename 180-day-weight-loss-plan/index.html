@@ -1,0 +1,1032 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f6f5">
+  <link rel="icon" href="data:,">
+  <title>180天减重执行表｜2026-10-01</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f6f5;
+      --surface: #ffffff;
+      --surface-2: #eef2f0;
+      --line: #d9e0dd;
+      --text: #18201d;
+      --muted: #65706b;
+      --accent: #18794e;
+      --accent-soft: #dcefe5;
+      --warning: #8b3d22;
+      --warning-bg: #fff0e9;
+      --warning-line: #efc6b6;
+      --blue: #315d7c;
+      --shadow: 0 1px 2px rgba(18, 31, 25, .06);
+      --radius: 8px;
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #111614;
+      --surface: #19201d;
+      --surface-2: #222b27;
+      --line: #35413c;
+      --text: #edf2ef;
+      --muted: #a8b2ad;
+      --accent: #60c993;
+      --accent-soft: #183d2c;
+      --warning: #ffb397;
+      --warning-bg: #35231d;
+      --warning-line: #704436;
+      --blue: #91bedb;
+      --shadow: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --bg: #111614;
+        --surface: #19201d;
+        --surface-2: #222b27;
+        --line: #35413c;
+        --text: #edf2ef;
+        --muted: #a8b2ad;
+        --accent: #60c993;
+        --accent-soft: #183d2c;
+        --warning: #ffb397;
+        --warning-bg: #35231d;
+        --warning-line: #704436;
+        --blue: #91bedb;
+        --shadow: none;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      letter-spacing: 0;
+    }
+    button, input, textarea, select { font: inherit; letter-spacing: 0; }
+    button, input, textarea { color: inherit; }
+    button { touch-action: manipulation; }
+    a { color: var(--accent); }
+    .shell { width: min(100%, 1180px); margin: 0 auto; padding: 0 14px 72px; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      margin: 0 -14px;
+      padding: max(10px, env(safe-area-inset-top)) 14px 10px;
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+    .topbar-inner { width: min(100%, 1152px); margin: 0 auto; display: flex; align-items: center; gap: 10px; }
+    .title-wrap { min-width: 0; flex: 1; }
+    h1 { margin: 0; font-size: 18px; line-height: 1.2; font-weight: 760; }
+    .topline { margin-top: 3px; color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .icon-button {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      cursor: pointer;
+    }
+    .icon-button:hover { border-color: var(--accent); }
+
+    .safety {
+      margin: 14px 0;
+      padding: 12px 13px;
+      border: 1px solid var(--warning-line);
+      border-left: 4px solid var(--warning);
+      border-radius: var(--radius);
+      background: var(--warning-bg);
+      color: var(--warning);
+    }
+    .safety strong { display: block; margin-bottom: 3px; font-size: 14px; }
+    .safety p { margin: 0; font-size: 13px; }
+    .safety p + p { margin-top: 6px; }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin: 12px 0;
+    }
+    .metric {
+      min-width: 0;
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .metric-label { color: var(--muted); font-size: 12px; }
+    .metric-value { margin-top: 2px; font-size: 20px; line-height: 1.25; font-weight: 760; font-variant-numeric: tabular-nums; }
+    .metric-sub { margin-top: 2px; color: var(--muted); font-size: 11px; }
+
+    .progress-panel {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+    .progress-head { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; }
+    .progress-head span:last-child { color: var(--muted); text-align: right; }
+    .progress-track { height: 8px; margin-top: 9px; overflow: hidden; border-radius: 999px; background: var(--surface-2); }
+    .progress-fill { width: 0; height: 100%; background: var(--accent); transition: width .25s ease; }
+
+    .section-title { margin: 20px 0 8px; font-size: 15px; font-weight: 750; }
+    .section-note { margin: -4px 0 10px; color: var(--muted); font-size: 12px; }
+
+    .milestones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .milestone { padding: 10px 11px; border-left: 3px solid var(--accent); background: var(--surface); border-radius: 0 var(--radius) var(--radius) 0; }
+    .milestone strong { display: block; font-size: 14px; }
+    .milestone span { color: var(--muted); font-size: 11px; }
+
+    .rules {
+      display: grid;
+      gap: 8px;
+    }
+    .rule {
+      padding: 10px 12px;
+      border-top: 1px solid var(--line);
+      background: transparent;
+    }
+    .rule:first-child { border-top: 0; }
+    .rule strong { display: block; margin-bottom: 2px; font-size: 13px; }
+    .rule p { margin: 0; color: var(--muted); font-size: 12px; }
+
+    .controls {
+      position: sticky;
+      top: 71px;
+      z-index: 15;
+      margin: 16px -4px 12px;
+      padding: 8px 4px;
+      background: color-mix(in srgb, var(--bg) 94%, transparent);
+      backdrop-filter: blur(12px);
+    }
+    .segments {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-2);
+    }
+    .segment {
+      min-height: 36px;
+      padding: 6px 7px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .segment.active { background: var(--surface); color: var(--text); box-shadow: var(--shadow); font-weight: 700; }
+    .control-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; margin-top: 8px; }
+    .date-control, .action-button {
+      min-height: 40px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+    .date-control { width: 100%; padding: 7px 10px; }
+    .action-button { padding: 7px 12px; cursor: pointer; font-size: 13px; }
+    .action-button:hover { border-color: var(--accent); }
+    .action-button.primary { border-color: var(--accent); background: var(--accent); color: #fff; }
+    [data-theme="dark"] .action-button.primary { color: #102219; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+    .toolbar .action-button { min-height: 36px; padding: 6px 10px; }
+    .file-input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+
+    .week-block { margin-top: 18px; scroll-margin-top: 150px; }
+    .week-heading { display: flex; align-items: end; justify-content: space-between; gap: 10px; margin: 0 2px 7px; }
+    .week-heading h2 { margin: 0; font-size: 15px; }
+    .week-heading span { color: var(--muted); font-size: 11px; text-align: right; }
+    .days { display: grid; gap: 8px; }
+    .day-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow: clip;
+      scroll-margin-top: 160px;
+    }
+    .day-card[open] { border-color: color-mix(in srgb, var(--accent) 42%, var(--line)); }
+    .day-summary {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 7px 10px;
+      padding: 12px 38px 12px 12px;
+      cursor: pointer;
+      list-style: none;
+    }
+    .day-summary::-webkit-details-marker { display: none; }
+    .day-summary::after { content: "+"; position: absolute; right: 13px; top: 13px; color: var(--muted); font-size: 20px; line-height: 1; }
+    .day-card[open] > .day-summary::after { content: "−"; }
+    .date-line { min-width: 0; }
+    .date-line strong { display: block; font-size: 15px; }
+    .date-line span { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .target { align-self: start; text-align: right; font-variant-numeric: tabular-nums; }
+    .target strong { display: block; font-size: 15px; color: var(--accent); }
+    .target span { display: block; color: var(--muted); font-size: 10px; }
+    .summary-chips { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 5px; }
+    .chip { display: inline-flex; align-items: center; min-height: 23px; padding: 3px 7px; border-radius: 999px; background: var(--surface-2); color: var(--muted); font-size: 10px; }
+    .chip.alcohol { color: var(--warning); background: var(--warning-bg); }
+    .chip.holiday { color: var(--blue); }
+
+    .day-body { padding: 0 12px 13px; border-top: 1px solid var(--line); }
+    .schedule { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 6px 10px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+    .schedule time { color: var(--accent); font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .schedule div { min-width: 0; font-size: 12px; }
+    .schedule b { display: block; margin-bottom: 1px; font-size: 13px; }
+    .schedule small { display: block; color: var(--muted); font-size: 11px; }
+
+    .workout { padding: 11px 0; border-bottom: 1px solid var(--line); }
+    .workout-head { display: flex; justify-content: space-between; gap: 12px; }
+    .workout-head strong { font-size: 13px; }
+    .workout-head span { color: var(--accent); font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .workout p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+    .downgrade { margin-top: 8px; padding: 8px 9px; border-left: 3px solid var(--warning); background: var(--warning-bg); color: var(--warning); font-size: 11px; }
+
+    .meal-section { padding: 8px 0; border-bottom: 1px solid var(--line); }
+    .meal-section > summary { cursor: pointer; color: var(--text); font-size: 13px; font-weight: 700; }
+    .meal-grid { display: grid; gap: 7px; margin-top: 8px; }
+    .meal-row { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 8px; font-size: 12px; }
+    .meal-row strong { color: var(--accent); font-size: 11px; }
+    .meal-row span { min-width: 0; }
+    .meal-note { margin: 8px 0 0; color: var(--muted); font-size: 11px; }
+    .meals-hidden .meal-section { display: none; }
+
+    .alcohol-box { padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .alcohol-box strong { display: block; font-size: 13px; }
+    .alcohol-box p { margin: 3px 0 0; color: var(--muted); font-size: 11px; }
+    .alcohol-box.drink strong { color: var(--warning); }
+
+    .checkin { padding-top: 11px; }
+    .checkin h3 { margin: 0 0 8px; font-size: 13px; }
+    .checkin-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .field { min-width: 0; }
+    .field label { display: block; margin-bottom: 3px; color: var(--muted); font-size: 10px; }
+    .field input, .field textarea {
+      width: 100%;
+      min-height: 38px;
+      padding: 7px 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--bg);
+    }
+    .field textarea { min-height: 68px; resize: vertical; }
+    .field.full { grid-column: 1 / -1; }
+    .check-field { display: flex; align-items: center; gap: 8px; min-height: 38px; padding: 7px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
+    .check-field input { width: 18px; height: 18px; accent-color: var(--accent); }
+    .saved { min-height: 18px; margin-top: 5px; color: var(--accent); font-size: 10px; }
+
+    .empty { display: none; padding: 34px 16px; text-align: center; color: var(--muted); }
+    .empty.visible { display: block; }
+    .footnotes { margin-top: 24px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+    .footnotes p { margin: 5px 0; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: max(18px, env(safe-area-inset-bottom));
+      z-index: 40;
+      max-width: calc(100vw - 28px);
+      padding: 9px 12px;
+      border-radius: var(--radius);
+      background: var(--text);
+      color: var(--bg);
+      font-size: 12px;
+      opacity: 0;
+      transform: translate(-50%, 12px);
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (min-width: 720px) {
+      .shell { padding-left: 22px; padding-right: 22px; }
+      .topbar { margin-left: -22px; margin-right: -22px; padding-left: 22px; padding-right: 22px; }
+      .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .milestones { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .rule:nth-child(2) { border-top: 0; }
+      .days { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+      .controls { top: 71px; }
+    }
+
+    @media (min-width: 1040px) {
+      .dashboard { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(310px, .75fr); gap: 18px; align-items: start; }
+      .dashboard-side { position: sticky; top: 82px; }
+      .days { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .controls { position: static; }
+    }
+
+    @media (max-width: 370px) {
+      .shell { padding-left: 10px; padding-right: 10px; }
+      .topbar { margin-left: -10px; margin-right: -10px; padding-left: 10px; padding-right: 10px; }
+      .metric-value { font-size: 18px; }
+      .segment { padding-left: 4px; padding-right: 4px; font-size: 11px; }
+      .day-summary { padding-left: 10px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell" id="app">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="title-wrap">
+          <h1>180天减重执行表</h1>
+          <div class="topline" id="topline">2026-10-01 至 2027-03-29｜95 kg → 75 kg</div>
+        </div>
+        <button class="icon-button" id="themeToggle" type="button" title="切换明暗模式" aria-label="切换明暗模式">◐</button>
+      </div>
+    </header>
+
+    <div class="safety" role="alert">
+      <strong>先处理两个高风险点，再追求速度</strong>
+      <p>500 ml 的 52 度白酒约含 205 g 纯酒精和 1436 kcal。这里的数字是阶段减量上限，不是安全量，也不是饮酒配额。耐受高不等于伤害小。</p>
+      <p>开始前一周内预约全科、心内科或成瘾医学评估，并做血压、肝功能、血脂、空腹血糖、尿酸和睡眠呼吸暂停筛查。若减酒时出现手抖、出汗、心悸、恶心、明显焦躁、幻觉或抽搐，不要硬扛或自行骤停，立即就医。饮酒当晚不要与安眠药同用，除非开药医生或药师明确确认。</p>
+    </div>
+
+    <div class="dashboard">
+      <main>
+        <section class="metrics" aria-label="计划概览">
+          <div class="metric"><div class="metric-label">起始体重</div><div class="metric-value">95.0 kg</div><div class="metric-sub">BMI 31.0</div></div>
+          <div class="metric"><div class="metric-label">180天目标</div><div class="metric-value">75.0 kg</div><div class="metric-sub">BMI 24.5</div></div>
+          <div class="metric"><div class="metric-label">12周考核</div><div class="metric-value">85.7 kg</div><div class="metric-sub">2026-12-23</div></div>
+          <div class="metric"><div class="metric-label">饮酒减量</div><div class="metric-value">500 → 0</div><div class="metric-sub">ml / 计划饮酒夜</div></div>
+        </section>
+
+        <section class="progress-panel" aria-label="当前计划进度">
+          <div class="progress-head"><strong id="progressLabel">计划尚未开始</strong><span id="progressTarget">首日目标 95.0 kg</span></div>
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        </section>
+
+        <h2 class="section-title">阶段考核</h2>
+        <p class="section-note">看 7 天晨起体重均值，不因单日波动加练或挨饿。</p>
+        <section class="milestones" aria-label="体重里程碑">
+          <div class="milestone"><strong>第30天 91.7 kg</strong><span>适应饮食和规律运动</span></div>
+          <div class="milestone"><strong>第60天 88.3 kg</strong><span>稳定力量与有氧</span></div>
+          <div class="milestone"><strong>第84天 85.7 kg</strong><span>12周正式考核点</span></div>
+          <div class="milestone"><strong>第180天 75.0 kg</strong><span>健康 BMI 区间内</span></div>
+        </section>
+
+        <div class="controls" aria-label="计划筛选">
+          <div class="segments" role="tablist" aria-label="显示范围">
+            <button class="segment" data-filter="today" type="button">今日</button>
+            <button class="segment active" data-filter="week" type="button">本计划周</button>
+            <button class="segment" data-filter="holiday" type="button">节假日</button>
+            <button class="segment" data-filter="all" type="button">全部180天</button>
+          </div>
+          <div class="control-row">
+            <input class="date-control" id="jumpDate" type="date" min="2026-10-01" max="2027-03-29" aria-label="跳转到计划日期">
+            <button class="action-button primary" id="jumpButton" type="button">跳转</button>
+          </div>
+          <div class="toolbar">
+            <button class="action-button" id="mealToggle" type="button">隐藏三餐</button>
+            <button class="action-button" id="expandVisible" type="button">展开当前</button>
+            <button class="action-button" id="exportButton" type="button">导出记录</button>
+            <button class="action-button" id="importButton" type="button">导入记录</button>
+            <input class="file-input" id="importFile" type="file" accept="application/json" hidden>
+          </div>
+        </div>
+
+        <div id="planList"></div>
+        <div class="empty" id="emptyState">这个范围内没有计划日。可切换到“全部180天”或选择日期。</div>
+      </main>
+
+      <aside class="dashboard-side">
+        <h2 class="section-title">执行规则</h2>
+        <section class="rules">
+          <div class="rule"><strong>睡眠不足自动降级</strong><p>昨夜睡眠少于 6 小时、明显宿醉、静息心率异常或血压不稳时，取消 HIIT 和大重量训练，只做 30 至 40 分钟轻松走与拉伸。</p></div>
+          <div class="rule"><strong>饮酒日只在酒前练</strong><p>训练在饮酒前完成，强度控制在 RPE 5 至 6。先吃蛋白质、蔬菜和少量主食。每杯酒之间补水，不拼酒，不混甜饮，不把未喝额度转到下一次。</p></div>
+          <div class="rule"><strong>力量训练选重量</strong><p>建议一对可调哑铃。每组结束还能标准完成 3 至 4 次就是合适重量。任何胸痛、头晕或异常气短都立即停止。</p></div>
+          <div class="rule"><strong>平台期怎么处理</strong><p>若连续 2 周的 7 日均重高于曲线 1 kg，先取消夜宵和酒局加餐，并推进下一档酒量，不用极端节食或加倍 HIIT。</p></div>
+          <div class="rule"><strong>饮食底线</strong><p>日常食物约 1850 至 1950 kcal，蛋白质 110 至 130 g。酒精热量另计，不能靠不吃饭抵消。饮酒量若不下降，20 kg 目标很可能无法实现。</p></div>
+          <div class="rule"><strong>作息锚点</strong><p>每天按表起床，周末最多比工作日晚 30 分钟。起床后尽快见自然光 15 分钟，14:00 后不摄入咖啡因，睡前 45 分钟停止刷视频。</p></div>
+        </section>
+
+        <h2 class="section-title">酒量下降阶梯</h2>
+        <p class="section-note">仅在标记为计划饮酒夜的日期使用。0 ml 日不补喝。</p>
+        <section class="rules" id="taperRules"></section>
+      </aside>
+    </div>
+
+    <footer class="footnotes">
+      <p>节假日口径：2026-10-01 至 2026-10-07 及 2026-10-10 调休工作日采用已公布安排。2027 元旦与春节日期在本文件生成时尚未发布官方放假通知，页面内明确标注为预估，发布后应修订。</p>
+      <p>本计划是个人执行工具，不替代诊断与处方。尤其是大量饮酒、严重打鼾、晨起困倦、轻微三高与安眠药使用组合，必须优先排查酒精依赖和阻塞性睡眠呼吸暂停。</p>
+      <p>计划生成日期：2026-09-29。官方参考：<a href="https://www.gov.cn/zhengce/content/202511/content_7047090.htm" target="_blank" rel="noreferrer">国务院办公厅 2026 年节假日安排</a>。</p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const START = new Date(2026, 9, 1, 12, 0, 0);
+      const TOTAL_DAYS = 180;
+      const STORE_KEY = 'weight-plan-2026-10-01-v1';
+      const SETTINGS_KEY = 'weight-plan-2026-10-01-settings-v1';
+      const weekNames = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+
+      const taperStages = [
+        [1, 14, 500], [15, 30, 450], [31, 45, 400], [46, 60, 350],
+        [61, 75, 300], [76, 90, 250], [91, 105, 200], [106, 120, 150],
+        [121, 135, 100], [136, 150, 75], [151, 165, 50], [166, 180, 25]
+      ];
+
+      const holidayMap = {
+        '2026-10-01': ['国庆假期', 'official'], '2026-10-02': ['国庆假期', 'official'],
+        '2026-10-03': ['国庆假期', 'official'], '2026-10-04': ['国庆假期', 'official'],
+        '2026-10-05': ['国庆假期', 'official'], '2026-10-06': ['国庆假期', 'official'],
+        '2026-10-07': ['国庆假期', 'official'], '2026-10-10': ['国庆调休工作日', 'makeup'],
+        '2027-01-01': ['元旦假期预估', 'projected'], '2027-01-02': ['元旦假期预估', 'projected'],
+        '2027-01-03': ['元旦假期预估', 'projected'],
+        '2027-02-05': ['春节社交窗口预估', 'projected'], '2027-02-06': ['春节社交窗口预估', 'projected'],
+        '2027-02-07': ['春节社交窗口预估', 'projected'], '2027-02-08': ['春节社交窗口预估', 'projected'],
+        '2027-02-09': ['春节社交窗口预估', 'projected'], '2027-02-10': ['春节社交窗口预估', 'projected'],
+        '2027-02-11': ['春节社交窗口预估', 'projected'], '2027-02-12': ['春节社交窗口预估', 'projected'],
+        '2027-02-13': ['春节社交窗口预估', 'projected']
+      };
+
+      const plannedSocialDates = new Set([
+        '2026-10-01', '2026-10-03', '2026-10-05',
+        '2027-01-01', '2027-01-02',
+        '2027-02-05', '2027-02-06', '2027-02-08', '2027-02-10', '2027-02-12'
+      ]);
+
+      const breakfasts = [
+        '燕麦 50 g + 纯牛奶 250 ml + 水煮蛋 2 个',
+        '全麦面包 2 片 + 水煮蛋 2 个 + 纯牛奶 250 ml',
+        '无糖酸奶 250 g + 燕麦 30 g + 苹果 1 个 + 水煮蛋 1 个',
+        '蒸红薯 250 g + 水煮蛋 2 个 + 无糖豆浆 300 ml',
+        '燕麦 50 g + 无糖酸奶 200 g + 香蕉 1 根 + 水煮蛋 1 个',
+        '玉米 1 根 + 水煮蛋 2 个 + 纯牛奶 250 ml',
+        '全麦面包 2 片 + 煎蛋 2 个（少油）+ 番茄 1 个'
+      ];
+
+      const lunches = [
+        '熟米饭 150 g + 去皮鸡腿肉 180 g + 绿叶菜 350 g',
+        '熟米饭 150 g + 瘦猪肉 150 g + 北豆腐 150 g + 青菜 300 g',
+        '熟米饭 150 g + 清蒸鱼 200 g + 西兰花或菜花 350 g',
+        '熟米饭 150 g + 牛肉 150 g + 洋葱青椒 300 g',
+        '熟米饭 150 g + 鸡胸肉 180 g + 番茄炒蛋 1 份 + 青菜 250 g',
+        '熟米饭 170 g + 虾仁或鱼肉 200 g + 混合蔬菜 350 g',
+        '熟米饭 150 g + 卤牛腱 150 g + 豆腐 100 g + 青菜 350 g，卤汁少浇'
+      ];
+
+      const dinners = [
+        '鸡胸肉 180 g + 菌菇青菜 400 g + 土豆 200 g',
+        '瘦猪肉 150 g + 北豆腐 150 g + 青菜 400 g + 熟米饭 80 g',
+        '鱼肉 200 g + 番茄或冬瓜 400 g + 红薯 200 g',
+        '鸡蛋 2 个 + 虾仁 150 g + 青菜 400 g + 熟米饭 100 g',
+        '去皮鸡腿肉 180 g + 凉拌黄瓜 200 g + 炒青菜 250 g + 玉米 1 根',
+        '牛肉 150 g + 豆腐 150 g + 混合蔬菜 400 g + 熟米饭 100 g',
+        '鱼肉 200 g + 菌菇豆腐汤 1 大碗 + 青菜 350 g + 红薯 180 g'
+      ];
+
+      const snacks = [
+        '16:00 加餐：无糖酸奶 200 g', '16:00 加餐：纯牛奶 250 ml',
+        '16:00 加餐：苹果 1 个', '16:00 加餐：水煮蛋 1 个',
+        '16:00 加餐：无糖酸奶 200 g', '16:00 加餐：香蕉 1 根',
+        '16:00 加餐：纯牛奶 250 ml'
+      ];
+
+      const esc = value => String(value).replace(/[&<>'"]/g, char => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+      })[char]);
+
+      function addDays(date, count) {
+        const next = new Date(date);
+        next.setDate(next.getDate() + count);
+        return next;
+      }
+
+      function iso(date) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+      }
+
+      function zhDate(date) {
+        return `${date.getMonth() + 1}月${date.getDate()}日`;
+      }
+
+      function parseTime(value) {
+        const [h, m] = value.split(':').map(Number);
+        return h * 60 + m;
+      }
+
+      function formatTime(total) {
+        const normalized = ((total % 1440) + 1440) % 1440;
+        return `${String(Math.floor(normalized / 60)).padStart(2, '0')}:${String(normalized % 60).padStart(2, '0')}`;
+      }
+
+      function plusMinutes(value, minutes) {
+        return formatTime(parseTime(value) + minutes);
+      }
+
+      function phaseFor(day) {
+        if (day <= 14) return { id: 1, name: '适应期', food: 1950, rpe: 'RPE 4-5' };
+        if (day <= 42) return { id: 2, name: '建立期', food: 1950, rpe: 'RPE 5-6' };
+        if (day <= 84) return { id: 3, name: '进阶期', food: 1900, rpe: 'RPE 6' };
+        if (day <= 126) return { id: 4, name: '强化期', food: 1900, rpe: 'RPE 6-7' };
+        if (day <= 150) return { id: 5, name: '巩固期', food: 1850, rpe: 'RPE 6-7' };
+        return { id: 6, name: '收官期', food: 1850, rpe: 'RPE 6-7' };
+      }
+
+      function taperFor(day) {
+        const stage = taperStages.find(item => day >= item[0] && day <= item[1]);
+        return stage ? stage[2] : 0;
+      }
+
+      function sleepFor(day, isRest) {
+        let wakeWork = '08:10';
+        let wakeRest = '09:00';
+        let bed = '01:30';
+        if (day >= 15) { wakeWork = '08:00'; wakeRest = '08:50'; bed = '01:15'; }
+        if (day >= 29) { wakeWork = '07:50'; wakeRest = '08:40'; bed = '01:00'; }
+        if (day >= 43) { wakeWork = '07:45'; wakeRest = '08:30'; bed = '00:45'; }
+        if (day >= 57) { bed = '00:30'; }
+        if (day >= 71) { wakeWork = '07:40'; wakeRest = '08:20'; bed = '00:15'; }
+        if (day >= 85) { wakeWork = '07:35'; wakeRest = '08:10'; bed = '00:00'; }
+        if (day >= 113) { wakeWork = '07:30'; wakeRest = '08:00'; bed = '23:50'; }
+        if (day >= 141) { bed = '23:45'; }
+        return { wake: isRest ? wakeRest : wakeWork, bed };
+      }
+
+      function isPlannedDrink(day, date, dateIso) {
+        if (plannedSocialDates.has(dateIso)) return true;
+        const dow = date.getDay();
+        if (holidayMap[dateIso] && holidayMap[dateIso][1] !== 'makeup') return false;
+        if (day <= 84) return dow === 5 || dow === 6;
+        if (day <= 126) return dow === 6;
+        if (day <= 150) return dow === 6;
+        if (day <= 165) return dow === 6 && Math.floor((day - 1) / 7) % 2 === 0;
+        return false;
+      }
+
+      function strengthA(duration) {
+        return { title: '全身力量 A', duration, detail: '热身 7 分钟；高脚杯深蹲、哑铃地板卧推、单臂划船、臀桥各 3 组 x 10 至 12 次；死虫 3 组 x 8 次/侧；拉伸 5 分钟。' };
+      }
+
+      function strengthB(duration) {
+        return { title: '全身力量 B', duration, detail: '热身 7 分钟；哑铃罗马尼亚硬拉、台阶踏步、站姿推举、支撑划船各 3 组 x 8 至 12 次；鸟狗 3 组 x 8 次/侧；拉伸 5 分钟。' };
+      }
+
+      function strengthC(duration) {
+        return { title: '全身力量 C', duration, detail: '热身 8 分钟；分腿蹲扶墙、哑铃硬拉、俯卧撑靠桌、双手划船各 3 组 x 10 次；农夫走 4 组 x 40 秒；拉伸 6 分钟。' };
+      }
+
+      function workoutFor(day, date, isRest, drinkToday, drankYesterday, phase) {
+        if (drankYesterday) {
+          const duration = phase.id <= 2 ? 30 : 40;
+          return { title: '酒后恢复走', duration, detail: `跑步机 0% 至 2% 坡度轻松走 ${duration - 10} 分钟，能够完整说句子；髋、胸椎与小腿拉伸 10 分钟。今天不做 HIIT 和大重量。`, recovery: true };
+        }
+        if (drinkToday) {
+          const duration = phase.id <= 2 ? 30 : phase.id <= 4 ? 40 : 45;
+          return { title: '酒前中低强度爬坡走', duration, detail: `热身 5 分钟；坡度 4% 至 8%、速度 4.0 至 5.2 km/h 走 ${duration - 10} 分钟；放松 5 分钟。全程 ${phase.rpe}，必须在饮酒前结束。`, recovery: false };
+        }
+
+        const dow = date.getDay();
+        let workout;
+        if (phase.id === 1) {
+          const first = [
+            { title: '轻松走与活动', duration: 35, detail: '跑步机平坡轻松走 25 分钟；髋屈肌、小腿、胸椎活动 10 分钟。' },
+            { title: '爬坡适应', duration: 30, detail: '热身 5 分钟；坡度 3% 至 6%、速度 3.8 至 4.8 km/h 走 20 分钟；放松 5 分钟。' },
+            { title: '基础力量启蒙', duration: 30, detail: '椅子深蹲、靠墙俯卧撑、徒手臀桥、鸟狗各 2 组 x 10 次；组间慢走；结束拉伸。' },
+            { title: '稳定爬坡走', duration: 35, detail: '热身 5 分钟；坡度 4% 至 7% 持续走 25 分钟；放松 5 分钟。' },
+            { title: '灵活性与轻松走', duration: 30, detail: '平坡轻松走 20 分钟；肩、髋、腘绳肌与小腿活动 10 分钟。' },
+            { title: '周末耐力走', duration: 45, detail: '户外或跑步机连续走 40 分钟，保持能交谈；放松 5 分钟。' },
+            { title: '恢复有氧', duration: 40, detail: '跑步机 0% 至 3% 坡度轻松走 30 分钟；全身拉伸 10 分钟。' }
+          ];
+          workout = first[dow];
+        } else if (phase.id === 2) {
+          const set = {
+            1: strengthA(40),
+            2: { title: '爬坡间歇走', duration: 40, detail: '热身 7 分钟；坡度 7% 快走 2 分钟 + 坡度 2% 慢走 2 分钟，共 6 轮；放松 9 分钟。' },
+            3: strengthB(40),
+            4: { title: '低冲击 HIIT', duration: 32, detail: '热身 7 分钟；快步开合、原地高抬腿低冲击版、深蹲触椅、站姿提膝各 30 秒，休 30 秒，循环 4 轮；放松 9 分钟。' },
+            5: { title: '稳态爬坡走', duration: 40, detail: '坡度 4% 至 7%，连续走 30 分钟，前后各 5 分钟平坡。' },
+            6: { title: '周末长走', duration: 55, detail: '户外快走或跑步机爬坡走 45 分钟；灵活性 10 分钟。' },
+            0: { title: '健身操与拉伸', duration: 45, detail: '低冲击健身操 30 分钟；核心稳定和拉伸 15 分钟。' }
+          };
+          workout = set[dow];
+        } else if (phase.id === 3) {
+          const set = {
+            1: strengthA(48),
+            2: { title: '跑步机坡度间歇', duration: 48, detail: '热身 8 分钟；坡度 8% 快走 3 分钟 + 坡度 2% 走 2 分钟，共 7 轮；放松 5 分钟。' },
+            3: strengthB(48),
+            4: { title: '低冲击 HIIT', duration: 38, detail: '热身 8 分钟；5 个低冲击动作做 40 秒、休 20 秒，5 轮；放松 5 分钟。动作保持安静落地，不追求跳跃。' },
+            5: { title: '稳态爬坡走', duration: 45, detail: '热身 5 分钟；坡度 5% 至 9% 连续走 35 分钟；放松 5 分钟。' },
+            6: strengthC(50),
+            0: { title: '周末长有氧', duration: 65, detail: '户外快走、椭圆机体验或骑行 55 分钟；拉伸 10 分钟。保持 RPE 5 至 6。' }
+          };
+          workout = set[dow];
+        } else if (phase.id === 4) {
+          const set = {
+            1: strengthA(52),
+            2: { title: '坡度耐力间歇', duration: 52, detail: '热身 8 分钟；坡度 8% 至 10% 走 4 分钟 + 坡度 2% 走 2 分钟，共 6 轮；放松 8 分钟。' },
+            3: strengthB(52),
+            4: { title: '低冲击 HIIT', duration: 42, detail: '热身 8 分钟；6 个低冲击动作做 40 秒、休 20 秒，5 轮；放松 4 分钟。保持动作质量。' },
+            5: { title: '稳态有氧', duration: 50, detail: '跑步机坡度 4% 至 8% 快走 40 分钟；前后各 5 分钟调整。' },
+            6: strengthC(55),
+            0: { title: '周末长有氧', duration: 75, detail: '快走、骑行、游泳或羽毛球 60 分钟；轻松走与拉伸 15 分钟。不要用对抗足球作为首次回归项目。' }
+          };
+          workout = set[dow];
+        } else {
+          const set = {
+            1: strengthA(55),
+            2: { title: '坡度耐力间歇', duration: 55, detail: '热身 8 分钟；坡度 8% 至 11% 走 4 分钟 + 坡度 2% 走 2 分钟，共 7 轮；放松 5 分钟。' },
+            3: strengthB(55),
+            4: { title: '低冲击 HIIT', duration: 45, detail: '热身 8 分钟；6 个低冲击动作做 45 秒、休 15 秒，5 轮；核心稳定 4 分钟；放松 3 分钟。' },
+            5: { title: '节奏快走', duration: 52, detail: '热身 7 分钟；RPE 6 至 7 的快走 35 分钟；放松走与拉伸 10 分钟。' },
+            6: strengthC(60),
+            0: { title: '周末长有氧', duration: 80, detail: '快走、骑行、游泳或羽毛球 65 分钟；拉伸 15 分钟。强度以能持续完成为准。' }
+          };
+          workout = set[dow];
+        }
+
+        if (isRest && dow !== 0 && dow !== 6 && workout.duration < 70) {
+          workout = { ...workout, duration: workout.duration + 10, detail: `${workout.detail} 假期安全加量：另加 10 分钟轻松走。` };
+        }
+        return workout;
+      }
+
+      function plannedWeight(day) {
+        return (95 - 20 * ((day - 1) / 179)).toFixed(1);
+      }
+
+      const rawDays = Array.from({ length: TOTAL_DAYS }, (_, index) => {
+        const day = index + 1;
+        const date = addDays(START, index);
+        const dateIso = iso(date);
+        const holiday = holidayMap[dateIso] || null;
+        const isMakeup = holiday && holiday[1] === 'makeup';
+        const isRest = !isMakeup && (Boolean(holiday) || date.getDay() === 0 || date.getDay() === 6);
+        const phase = phaseFor(day);
+        const drink = isPlannedDrink(day, date, dateIso);
+        return { day, date, dateIso, holiday, isMakeup, isRest, phase, drink, alcohol: drink ? taperFor(day) : 0 };
+      });
+
+      const days = rawDays.map((item, index) => {
+        const drankYesterday = index > 0 && rawDays[index - 1].drink;
+        const sleep = sleepFor(item.day, item.isRest);
+        const workout = workoutFor(item.day, item.date, item.isRest, item.drink, drankYesterday, item.phase);
+        const exerciseTime = item.drink ? (item.isRest ? '16:30' : '17:45') : (item.isRest ? '10:30' : '20:00');
+        const lunchTime = item.isRest ? '12:30' : '12:20';
+        const dinnerTime = item.drink ? (item.isRest ? '18:00' : '19:00') : '18:30';
+        const bed = item.drink ? plusMinutes(sleep.bed, 15) : sleep.bed;
+        const drinkStart = item.drink ? plusMinutes(dinnerTime, 60) : null;
+        return {
+          ...item,
+          drankYesterday,
+          sleep,
+          bed,
+          workout,
+          exerciseTime,
+          lunchTime,
+          dinnerTime,
+          drinkStart,
+          breakfastTime: plusMinutes(sleep.wake, 30),
+          targetWeight: plannedWeight(item.day),
+          week: Math.floor((item.day - 1) / 7) + 1,
+          breakfast: breakfasts[(item.day - 1) % breakfasts.length],
+          lunch: lunches[(item.day - 1) % lunches.length],
+          dinner: item.drink
+            ? '饮酒前正餐：鱼或鸡肉 200 g + 豆腐 150 g + 蔬菜 400 g + 熟米饭 100 g。先吃完再饮酒'
+            : dinners[(item.day - 1) % dinners.length],
+          snack: snacks[(item.day - 1) % snacks.length]
+        };
+      });
+
+      let records = loadJson(STORE_KEY, {});
+      let settings = loadJson(SETTINGS_KEY, { mealsHidden: false, theme: 'system' });
+      let filter = 'week';
+      let activeIndex = getNearestTodayIndex();
+      let toastTimer;
+
+      const app = document.getElementById('app');
+      const planList = document.getElementById('planList');
+      const emptyState = document.getElementById('emptyState');
+      const mealToggle = document.getElementById('mealToggle');
+      const jumpDate = document.getElementById('jumpDate');
+
+      function loadJson(key, fallback) {
+        try {
+          const parsed = JSON.parse(localStorage.getItem(key));
+          return parsed && typeof parsed === 'object' ? parsed : fallback;
+        } catch (error) {
+          return fallback;
+        }
+      }
+
+      function saveRecords() {
+        localStorage.setItem(STORE_KEY, JSON.stringify(records));
+      }
+
+      function saveSettings() {
+        localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+      }
+
+      function getNearestTodayIndex() {
+        const today = new Date();
+        const todayMid = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 12);
+        const delta = Math.round((todayMid - START) / 86400000);
+        return Math.max(0, Math.min(TOTAL_DAYS - 1, delta));
+      }
+
+      function applyTheme() {
+        if (settings.theme === 'system') document.documentElement.removeAttribute('data-theme');
+        else document.documentElement.setAttribute('data-theme', settings.theme);
+      }
+
+      function applyMealState() {
+        app.classList.toggle('meals-hidden', settings.mealsHidden);
+        mealToggle.textContent = settings.mealsHidden ? '显示三餐' : '隐藏三餐';
+        mealToggle.setAttribute('aria-pressed', String(settings.mealsHidden));
+      }
+
+      function visibleDays() {
+        if (filter === 'today') return days.filter((_, index) => index === activeIndex);
+        if (filter === 'week') {
+          const week = days[activeIndex].week;
+          return days.filter(day => day.week === week);
+        }
+        if (filter === 'holiday') return days.filter(day => day.holiday);
+        return days;
+      }
+
+      function alcoholText(day) {
+        if (!day.drink) return '0 ml，计划无酒日';
+        return `${day.alcohol} ml 上限`;
+      }
+
+      function scheduleRows(day) {
+        const rows = [
+          [day.sleep.wake, '起床', '喝水 300 ml，拉开窗帘或出门见自然光 15 分钟；如需称重，排空后、进食前完成。'],
+          [day.breakfastTime, '早餐', day.breakfast],
+          [day.lunchTime, '午餐', day.lunch],
+          [day.exerciseTime, '运动', `${day.workout.title}，${day.workout.duration} 分钟`],
+          [day.dinnerTime, '晚餐', day.dinner]
+        ];
+        if (day.drink) rows.push([day.drinkStart, '计划酒局', `${day.alcohol} ml 是本晚 52 度白酒减量上限，22:30 前结束，额度不可结转。`]);
+        rows.push([plusMinutes(day.bed, -45), '睡前收尾', '停止工作、短视频与电子烟；调暗灯光，做呼吸放松或洗温水澡。']);
+        rows.push([day.bed, '关灯睡觉', day.drink ? '饮酒当晚不自行服用安眠药。若医生另有明确书面指导，按医嘱执行。' : '固定关灯时间。20 分钟仍清醒可离床做安静活动，困了再回床。']);
+        return rows.map(row => `<time>${row[0]}</time><div><b>${row[1]}</b><small>${esc(row[2])}</small></div>`).join('');
+      }
+
+      function dayCard(day, open) {
+        const holidayLabel = day.holiday ? `${day.holiday[0]}${day.holiday[1] === 'official' || day.holiday[1] === 'makeup' ? '（官方）' : '（待官方修订）'}` : '';
+        const record = records[day.dateIso] || {};
+        const alcoholKcal = Math.round(day.alcohol * 0.52 * 0.789 * 7);
+        const safeId = `d-${day.dateIso}`;
+        return `
+          <details class="day-card" id="${safeId}" data-day="${day.day}" data-date="${day.dateIso}" ${open ? 'open' : ''}>
+            <summary class="day-summary">
+              <div class="date-line">
+                <strong>第${day.day}天｜${zhDate(day.date)} ${weekNames[day.date.getDay()]}</strong>
+                <span>第${day.week}周 · ${day.phase.name}${holidayLabel ? ` · ${holidayLabel}` : ''}</span>
+              </div>
+              <div class="target"><strong>${day.targetWeight} kg</strong><span>趋势目标</span></div>
+              <div class="summary-chips">
+                <span class="chip">${day.workout.duration}分钟 ${esc(day.workout.title)}</span>
+                <span class="chip ${day.drink ? 'alcohol' : ''}">${alcoholText(day)}</span>
+                <span class="chip">${day.sleep.wake} 起 · ${day.bed} 睡</span>
+                ${holidayLabel ? `<span class="chip holiday">${esc(holidayLabel)}</span>` : ''}
+              </div>
+            </summary>
+            <div class="day-body">
+              <div class="schedule">${scheduleRows(day)}</div>
+
+              <section class="workout">
+                <div class="workout-head"><strong>${esc(day.workout.title)}</strong><span>${day.exerciseTime} · ${day.workout.duration} 分钟</span></div>
+                <p>${esc(day.workout.detail)}</p>
+                <div class="downgrade">当日降级条件：睡眠少于 6 小时、宿醉、头晕、心悸、胸闷、血压明显异常，或距上次饮酒不足 24 小时。满足任一项就改为 30 至 40 分钟轻松走和拉伸。</div>
+              </section>
+
+              <details class="meal-section" open>
+                <summary>三餐与加餐｜食物目标约 ${day.phase.food} kcal</summary>
+                <div class="meal-grid">
+                  <div class="meal-row"><strong>${day.breakfastTime}</strong><span>${esc(day.breakfast)}</span></div>
+                  <div class="meal-row"><strong>${day.lunchTime}</strong><span>${esc(day.lunch)}</span></div>
+                  <div class="meal-row"><strong>${day.dinnerTime}</strong><span>${esc(day.dinner)}</span></div>
+                  <div class="meal-row"><strong>加餐</strong><span>${esc(day.snack)}</span></div>
+                </div>
+                <p class="meal-note">烹调油全天 20 至 25 g，饮水 2 至 2.5 L，蔬菜重量按生重估算。调味以少盐为主。蛋白质目标 110 至 130 g。</p>
+              </details>
+
+              <section class="alcohol-box ${day.drink ? 'drink' : ''}">
+                <strong>52度白酒：${alcoholText(day)}</strong>
+                <p>${day.drink
+                  ? `约 ${alcoholKcal} kcal，仅酒精热量。先吃正餐，不空腹，不混酒，不配甜饮和油炸夜宵，22:30 停止。这个数是减量上限，不是安全量或必须喝完的任务。`
+                  : '今天为计划无酒日。额度不能累计到周末或节假日；可用无糖气泡水、无糖茶或零酒精饮料替代社交手持饮品。'}</p>
+              </section>
+
+              <section class="checkin" data-date="${day.dateIso}">
+                <h3>当日打卡，自动保存在本机</h3>
+                <div class="checkin-grid">
+                  <div class="field"><label for="weight-${day.day}">晨起体重 kg</label><input id="weight-${day.day}" data-field="weight" type="number" inputmode="decimal" min="55" max="130" step="0.1" value="${esc(record.weight || '')}"></div>
+                  <div class="field"><label for="actual-alcohol-${day.day}">实际白酒 ml</label><input id="actual-alcohol-${day.day}" data-field="alcohol" type="number" inputmode="numeric" min="0" max="1500" step="10" value="${esc(record.alcohol || '')}"></div>
+                  <div class="field"><label for="actual-bed-${day.day}">实际关灯时间</label><input id="actual-bed-${day.day}" data-field="bed" type="time" value="${esc(record.bed || '')}"></div>
+                  <div class="field"><label>运动完成</label><label class="check-field"><input data-field="workout" type="checkbox" ${record.workout ? 'checked' : ''}> 已完成</label></div>
+                  <div class="field full"><label for="note-${day.day}">备注</label><textarea id="note-${day.day}" data-field="note" placeholder="睡眠、血压、酒局、身体感受">${esc(record.note || '')}</textarea></div>
+                </div>
+                <div class="saved" aria-live="polite"></div>
+              </section>
+            </div>
+          </details>`;
+      }
+
+      function render() {
+        const list = visibleDays();
+        const groups = new Map();
+        list.forEach(day => {
+          if (!groups.has(day.week)) groups.set(day.week, []);
+          groups.get(day.week).push(day);
+        });
+        planList.innerHTML = Array.from(groups.entries()).map(([week, weekDays]) => {
+          const first = weekDays[0];
+          const last = weekDays[weekDays.length - 1];
+          const openDate = filter === 'today' ? first.dateIso : days[activeIndex].dateIso;
+          return `<section class="week-block" id="week-${week}">
+            <div class="week-heading"><h2>第${week}周</h2><span>${first.dateIso} 至 ${last.dateIso}</span></div>
+            <div class="days">${weekDays.map(day => dayCard(day, day.dateIso === openDate)).join('')}</div>
+          </section>`;
+        }).join('');
+        emptyState.classList.toggle('visible', list.length === 0);
+        bindCheckins();
+        applyMealState();
+      }
+
+      function bindCheckins() {
+        planList.querySelectorAll('.checkin').forEach(section => {
+          const date = section.dataset.date;
+          section.querySelectorAll('[data-field]').forEach(input => {
+            const eventName = input.type === 'checkbox' ? 'change' : 'input';
+            input.addEventListener(eventName, () => {
+              records[date] = records[date] || {};
+              records[date][input.dataset.field] = input.type === 'checkbox' ? input.checked : input.value;
+              saveRecords();
+              const status = section.querySelector('.saved');
+              status.textContent = '已保存';
+              clearTimeout(status._timer);
+              status._timer = setTimeout(() => { status.textContent = ''; }, 1200);
+            });
+          });
+        });
+      }
+
+      function updateProgress() {
+        const now = new Date();
+        const todayMid = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12);
+        const raw = Math.floor((todayMid - START) / 86400000) + 1;
+        const current = Math.max(0, Math.min(TOTAL_DAYS, raw));
+        const fill = current / TOTAL_DAYS * 100;
+        document.getElementById('progressFill').style.width = `${fill}%`;
+        const label = document.getElementById('progressLabel');
+        const target = document.getElementById('progressTarget');
+        if (raw < 1) {
+          label.textContent = `距开始还有 ${Math.abs(raw) + 1} 天`;
+          target.textContent = '首日目标 95.0 kg';
+        } else if (raw > TOTAL_DAYS) {
+          label.textContent = '180天计划已结束';
+          target.textContent = '终点目标 75.0 kg';
+        } else {
+          label.textContent = `第 ${raw} / ${TOTAL_DAYS} 天`;
+          target.textContent = `今日趋势目标 ${days[raw - 1].targetWeight} kg`;
+        }
+      }
+
+      function setFilter(next) {
+        filter = next;
+        document.querySelectorAll('.segment').forEach(button => button.classList.toggle('active', button.dataset.filter === filter));
+        render();
+      }
+
+      function jumpToSelected() {
+        const value = jumpDate.value;
+        const index = days.findIndex(day => day.dateIso === value);
+        if (index < 0) return showToast('请选择计划范围内的日期');
+        activeIndex = index;
+        setFilter('week');
+        requestAnimationFrame(() => {
+          const card = document.getElementById(`d-${value}`);
+          if (card) {
+            card.open = true;
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      }
+
+      function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+      }
+
+      function renderTaper() {
+        const container = document.getElementById('taperRules');
+        container.innerHTML = taperStages.map(([start, end, amount]) => {
+          const frequency = end <= 84 ? '周五、周六及指定节日酒局' : end <= 150 ? '逐步减为每周六及指定节日酒局' : end <= 165 ? '隔周一次，指定节日除外' : '常规酒局为 0 ml，特殊情况最高 25 ml';
+          return `<div class="rule"><strong>第${start}至${end}天：${amount} ml 上限</strong><p>${frequency}。这是减量上限，不是安全量；能少则少，未喝额度作废。</p></div>`;
+        }).join('');
+      }
+
+      document.querySelectorAll('.segment').forEach(button => button.addEventListener('click', () => setFilter(button.dataset.filter)));
+      document.getElementById('jumpButton').addEventListener('click', jumpToSelected);
+      jumpDate.addEventListener('change', jumpToSelected);
+
+      mealToggle.addEventListener('click', () => {
+        settings.mealsHidden = !settings.mealsHidden;
+        saveSettings();
+        applyMealState();
+        showToast(settings.mealsHidden ? '三餐内容已隐藏' : '三餐内容已显示');
+      });
+
+      document.getElementById('expandVisible').addEventListener('click', event => {
+        const cards = Array.from(planList.querySelectorAll('.day-card'));
+        const shouldOpen = cards.some(card => !card.open);
+        cards.forEach(card => { card.open = shouldOpen; });
+        event.currentTarget.textContent = shouldOpen ? '收起当前' : '展开当前';
+      });
+
+      document.getElementById('themeToggle').addEventListener('click', () => {
+        const dark = document.documentElement.getAttribute('data-theme') === 'dark' ||
+          (!document.documentElement.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        settings.theme = dark ? 'light' : 'dark';
+        saveSettings();
+        applyTheme();
+      });
+
+      document.getElementById('exportButton').addEventListener('click', () => {
+        const payload = { version: 1, plan: '2026-10-01-180d', exportedAt: new Date().toISOString(), records };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = `180天减重打卡-${iso(new Date())}.json`;
+        anchor.click();
+        URL.revokeObjectURL(url);
+        showToast('记录已导出');
+      });
+
+      document.getElementById('importButton').addEventListener('click', () => document.getElementById('importFile').click());
+      document.getElementById('importFile').addEventListener('change', event => {
+        const file = event.target.files && event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            const parsed = JSON.parse(reader.result);
+            if (!parsed || parsed.plan !== '2026-10-01-180d' || typeof parsed.records !== 'object') throw new Error('invalid');
+            records = parsed.records;
+            saveRecords();
+            render();
+            showToast('记录已导入');
+          } catch (error) {
+            showToast('文件不是本计划导出的有效记录');
+          }
+        };
+        reader.readAsText(file);
+        event.target.value = '';
+      });
+
+      applyTheme();
+      applyMealState();
+      jumpDate.value = days[activeIndex].dateIso;
+      renderTaper();
+      updateProgress();
+      render();
+    })();
+  </script>
+</body>
+</html>
